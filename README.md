@@ -1,0 +1,1530 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Camilla Soares | Advocacia Previdenciária e Mentoria Acadêmica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #f5f5f5;
+            line-height: 1.6;
+            background-color: #0a1933;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #daa520;
+            color: #0a1933;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ffffff;
+            border-color: #daa520;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #daa520;
+            margin: 15px auto 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.4s ease;
+            background-color: rgba(10, 25, 51, 0.9);
+        }
+
+        header.scrolled {
+            background-color: rgba(10, 25, 51, 0.95);
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            width: 180px;
+            height: 60px;
+            background-color: rgba(218, 165, 32, 0.1);
+            border: 1px dashed #daa520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #daa520;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #daa520;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 51, 0.8), rgba(10, 25, 51, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%230a1933"/><path d="M0,100 Q200,-50 400,100 T800,100 V600 H0 Z" fill="%23102040" opacity="0.7"/><path d="M0,150 Q200,50 400,150 T800,150 V600 H0 Z" fill="%23152a4f" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><path d="M50,5 L95,50 L50,95 L5,50 Z" fill="%23daa520" opacity="0.03"/></svg>');
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards 0.5s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-advocacia {
+            background-color: transparent;
+            border: 2px solid #daa520;
+            color: #ffffff;
+        }
+
+        .btn-advocacia:hover {
+            background-color: #daa520;
+            border-color: #daa520;
+            color: #0a1933;
+        }
+
+        .btn-mentoria {
+            background-color: #daa520;
+            color: #0a1933;
+        }
+
+        .btn-mentoria:hover {
+            background-color: #ffffff;
+            border-color: #daa520;
+            color: #0a1933;
+        }
+
+        /* Pena dourada como elemento decorativo */
+        .golden-feather {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .feather-top-right {
+            top: 10%;
+            right: 5%;
+            transform: rotate(45deg);
+        }
+
+        .feather-bottom-left {
+            bottom: 10%;
+            left: 5%;
+            transform: rotate(-135deg);
+        }
+
+        /* Sobre Section */
+        .sobre {
+            padding: 100px 0;
+            background-color: #0c1e3d;
+            position: relative;
+        }
+
+        .sobre::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="1" fill="%23daa520" opacity="0.1"/></svg>');
+            pointer-events: none;
+        }
+
+        .sobre-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sobre-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sobre p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* Fundadora Section */
+        .fundadora {
+            padding: 100px 0;
+            background-color: #0a1933;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fundadora::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><rect x="0" y="0" width="30" height="30" fill="none" stroke="%23daa520" stroke-width="0.5" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .fundadora-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .fundadora-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: rgba(218, 165, 32, 0.1);
+            border: 1px dashed #daa520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #daa520;
+            font-size: 0.9rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fundadora-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,90 C30,80 50,70 70,50 C80,40 85,30 90,10 C70,20 60,25 50,35 C30,55 20,75 10,90 Z" fill="%23daa520" opacity="0.3"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .fundadora-content {
+            flex: 1;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fundadora-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fundadora-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .fundadora-content h3::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #daa520;
+        }
+
+        .fundadora-content p {
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        /* Missão e Valores Section */
+        .missao-valores {
+            padding: 100px 0;
+            background-color: #0c1e3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .missao-valores::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="3" cy="3" r="3" fill="%23daa520" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .missao-valores-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .missao-box, .valores-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: #102040;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .missao-box.visible, .valores-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .missao-box:hover, .valores-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(218, 165, 32, 0.3);
+        }
+
+        .box-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .box-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(218, 165, 32, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .box-icon svg {
+            width: 25px;
+            height: 25px;
+            fill: #daa520;
+        }
+
+        .box-title {
+            font-size: 1.8rem;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .valores-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .valores-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .valores-list li svg {
+            width: 20px;
+            height: 20px;
+            fill: #daa520;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Quem Somos Section */
+        .quem-somos {
+            padding: 100px 0;
+            background-color: #0a1933;
+            position: relative;
+        }
+
+        .quem-somos::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><rect x="0" y="0" width="30" height="30" fill="none" stroke="%23daa520" stroke-width="0.5" opacity="0.05"/></svg>');
+            pointer-events: none;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            flex: 1;
+            background-color: #102040;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(218, 165, 32, 0.3);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(218, 165, 32, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            background-color: rgba(218, 165, 32, 0.2);
+            transform: scale(1.1);
+        }
+
+        .card-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #daa520;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #e0e0e0;
+            line-height: 1.7;
+        }
+
+        /* Depoimentos Section */
+        .depoimentos {
+            padding: 100px 0;
+            background-color: #0c1e3d;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .depoimentos::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30,5 L55,30 L30,55 L5,30 Z" fill="%23daa520" opacity="0.02"/></svg>');
+            pointer-events: none;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+
+        .testimonial-container {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
+            pointer-events: all;
+        }
+
+        .testimonial-content {
+            background-color: #102040;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .testimonial-content::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #102040;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #daa520;
+            margin-bottom: 15px;
+            background-color: #0a1933;
+        }
+
+        .testimonial-image svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            fill: #daa520;
+        }
+
+        .stars {
+            color: #daa520;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .testimonial-text::before, .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: #daa520;
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -10px;
+            left: -15px;
+        }
+
+        .testimonial-text::after {
+            bottom: -30px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #1a3056;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+        }
+
+        .testimonial-dot.active {
+            background-color: #daa520;
+            transform: scale(1.2);
+        }
+
+        .testimonial-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #102040;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .arrow:hover {
+            background-color: #daa520;
+        }
+
+        .arrow:hover svg {
+            fill: #0a1933;
+        }
+
+        .arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: #daa520;
+            transition: all 0.3s ease;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background-color: #0a1933;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.05) 0%, rgba(10, 25, 51, 0) 100%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta h2 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-cta {
+            background-color: #daa520;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+            color: #0a1933;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(218, 165, 32, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(218, 165, 32, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #081428;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(218, 165, 32, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo-placeholder {
+            width: 150px;
+            height: 50px;
+            background-color: rgba(218, 165, 32, 0.1);
+            border: 1px dashed #daa520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #daa520;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #daa520;
+        }
+
+        .footer-social {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #102040;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: #daa520;
+        }
+
+        .social-icon:hover svg {
+            fill: #0a1933;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #daa520;
+            transition: all 0.3s ease;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(218, 165, 32, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .cards-container {
+                flex-direction: column;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .missao-valores-container {
+                flex-direction: column;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .fundadora-container {
+                flex-direction: column;
+            }
+
+            .fundadora-image {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background-color: #0a1933;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.2);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .testimonial-arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-placeholder">Espaço para Logo</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#advocacia">Advocacia</a></li>
+                    <li><a href="#mentoria">Mentoria</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-image">
+            <!-- SVG de balança da justiça -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+                <g fill="#ffffff" opacity="0.05">
+                    <path d="M400,100 L400,300 M350,300 L450,300 M300,350 L500,350 M400,300 L400,350"/>
+                    <circle cx="300" cy="350" r="50"/>
+                    <circle cx="500" cy="350" r="50"/>
+                    <path d="M300,400 L300,500 M500,400 L500,500"/>
+                    <rect x="250" y="500" width="300" height="30" rx="5"/>
+                </g>
+            </svg>
+        </div>
+        <!-- Pena dourada decorativa -->
+        <div class="golden-feather feather-top-right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M10,90 C30,80 50,70 70,50 C80,40 85,30 90,10 C70,20 60,25 50,35 C30,55 20,75 10,90 Z" fill="#daa520"/>
+            </svg>
+        </div>
+        <div class="golden-feather feather-bottom-left">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path d="M10,90 C30,80 50,70 70,50 C80,40 85,30 90,10 C70,20 60,25 50,35 C30,55 20,75 10,90 Z" fill="#daa520"/>
+            </svg>
+        </div>
+        <div class="container hero-content">
+            <h1>Excelência em Direito Previdenciário e Mentoria Acadêmica.</h1>
+            <p>Soluções jurídicas especializadas e orientação acadêmica de alto nível para seu sucesso.</p>
+            <div class="hero-buttons">
+                <a href="#advocacia" class="btn btn-advocacia">Conheça a Advocacia</a>
+                <a href="#mentoria" class="btn btn-mentoria">Conheça a Mentoria</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre o Grupo</h2>
+            <div class="sobre-content">
+                <p>O Grupo Camilla Soares reúne profissionais de excelência em duas áreas complementares: advocacia previdenciária e mentoria acadêmica. Nossa missão é proporcionar soluções jurídicas especializadas e orientação educacional de alto nível, sempre com ética, dedicação e resultados comprovados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundadora Section -->
+    <section id="fundadora" class="fundadora">
+        <div class="container">
+            <h2 class="section-title">Nossa Fundadora</h2>
+            <div class="fundadora-container">
+                <div class="fundadora-image">
+                    <p>Espaço para foto da<br>Camilla Soares</p>
+                </div>
+                <div class="fundadora-content">
+                    <h3>Camilla Soares</h3>
+                    <p>Advogada especialista em Direito Previdenciário, com vasta experiência na área jurídica e acadêmica. Fundadora do Grupo Camilla Soares, dedica-se a transformar a vida de seus clientes através de soluções jurídicas eficientes e personalizadas.</p>
+                    <p>Com formação sólida e constante atualização, Camilla desenvolveu uma metodologia única que combina conhecimento técnico e abordagem humanizada, garantindo resultados expressivos tanto na advocacia quanto na mentoria acadêmica.</p>
+                    <p>Sua paixão pelo ensino e pelo direito a levou a criar um grupo que se destaca pela excelência e pelo compromisso com o sucesso de cada cliente e aluno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missão e Valores Section -->
+    <section id="missao-valores" class="missao-valores">
+        <div class="container">
+            <h2 class="section-title">Missão e Valores</h2>
+            <div class="missao-valores-container">
+                <div class="missao-box">
+                    <div class="box-header">
+                        <div class="box-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="box-title">Nossa Missão</h3>
+                    </div>
+                    <p>Proporcionar soluções jurídicas previdenciárias e orientação acadêmica de excelência, transformando desafios em conquistas para nossos clientes e alunos. Buscamos constantemente a inovação e o aprimoramento de nossos serviços, sempre com foco na satisfação e no sucesso de quem confia em nosso trabalho.</p>
+                    <p style="margin-top: 15px;">Acreditamos que o conhecimento e a justiça são pilares fundamentais para a construção de uma sociedade mais equilibrada e próspera, e trabalhamos diariamente para contribuir com essa visão.</p>
+                </div>
+                <div class="valores-box">
+                    <div class="box-header">
+                        <div class="box-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z"/>
+                            </svg>
+                        </div>
+                        <h3 class="box-title">Nossos Valores</h3>
+                    </div>
+                    <ul class="valores-list">
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                            <span><strong>Ética:</strong> Atuamos com integridade e transparência em todas as nossas relações profissionais.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                            <span><strong>Excelência:</strong> Buscamos constantemente o aprimoramento e a qualidade em nossos serviços.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                            <span><strong>Compromisso:</strong> Dedicação total aos objetivos e necessidades de nossos clientes e alunos.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                            <span><strong>Inovação:</strong> Aplicamos métodos modernos e eficientes para alcançar os melhores resultados.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
+                            </svg>
+                            <span><strong>Empatia:</strong> Compreendemos as necessidades individuais e oferecemos soluções personalizadas.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos Section -->
+    <section class="quem-somos">
+        <div class="container">
+            <h2 class="section-title">Quem Somos</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,6c1.93,0,3.5,1.57,3.5,3.5S13.93,13,12,13s-3.5-1.57-3.5-3.5S10.07,6,12,6z M12,20c-2.03,0-4.43-0.82-6.14-2.88C7.55,15.8,9.68,15,12,15s4.45,0.8,6.14,2.12C16.43,19.18,14.03,20,12,20z"/>
+                        </svg>
+                    </div>
+                    <h3>Líderes</h3>
+                    <p>Nossa equipe é liderada por profissionais com vasta experiência e formação acadêmica sólida, comprometidos com a excelência e resultados.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16,11c1.66,0,2.99-1.34,2.99-3S17.66,5,16,5s-3,1.34-3,3S14.34,11,16,11z M8,11c1.66,0,2.99-1.34,2.99-3S9.66,5,8,5S5,6.34,5,8S6.34,11,8,11z M8,13c-2.33,0-7,1.17-7,3.5V19h14v-2.5C15,14.17,10.33,13,8,13z M16,13c-0.29,0-0.62,0.02-0.97,0.05c1.16,0.84,1.97,1.97,1.97,3.45V19h6v-2.5C23,14.17,18.33,13,16,13z"/>
+                        </svg>
+                    </div>
+                    <h3>Equipe</h3>
+                    <p>Contamos com profissionais especializados em diferentes áreas do direito previdenciário e educadores com ampla experiência acadêmica.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,17.27L18.18,21l-1.64-7.03L22,9.24l-7.19-0.61L12,2L9.19,8.63L2,9.24l5.46,4.73L5.82,21L12,17.27z"/>
+                        </svg>
+                    </div>
+                    <h3>Valores</h3>
+                    <p>Ética, transparência, excelência e compromisso com resultados são os pilares que sustentam nossa atuação profissional em todas as áreas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section class="depoimentos">
+        <div class="container">
+            <h2 class="section-title">Depoimentos</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-container">
+                    <div class="testimonial active">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">O atendimento do Grupo Camilla Soares foi excepcional. Consegui minha aposentadoria em tempo recorde e com um valor acima do esperado. Profissionais extremamente competentes e atenciosos que me acompanharam em cada etapa do processo.</p>
+                        </div>
+                        <div class="testimonial-image">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,6c1.93,0,3.5,1.57,3.5,3.5S13.93,13,12,13s-3.5-1.57-3.5-3.5S10.07,6,12,6z M12,20c-2.03,0-4.43-0.82-6.14-2.88C7.55,15.8,9.68,15,12,15s4.45,0.8,6.14,2.12C16.43,19.18,14.03,20,12,20z"/>
+                            </svg>
+                        </div>
+                        <p class="testimonial-author">Carlos Mendes</p>
+                        <p class="testimonial-role">Cliente de Advocacia Previdenciária</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">A mentoria acadêmica foi transformadora para minha carreira. O acompanhamento personalizado e as estratégias de estudo me ajudaram a conquistar a aprovação no concurso dos meus sonhos. A metodologia é diferenciada e o suporte é constante, mesmo após o término do programa.</p>
+                        </div>
+                        <div class="testimonial-image">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,6c1.93,0,3.5,1.57,3.5,3.5S13.93,13,12,13s-3.5-1.57-3.5-3.5S10.07,6,12,6z M12,20c-2.03,0-4.43-0.82-6.14-2.88C7.55,15.8,9.68,15,12,15s4.45,0.8,6.14,2.12C16.43,19.18,14.03,20,12,20z"/>
+                            </svg>
+                        </div>
+                        <p class="testimonial-author">Ana Paula Silva</p>
+                        <p class="testimonial-role">Aluna de Mentoria Acadêmica</p>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p class="testimonial-text">Após anos tentando resolver minha situação previdenciária sem sucesso, encontrei o Grupo Camilla Soares. Em apenas 6 meses, conseguiram reverter uma decisão negativa e garantir meu benefício com todos os retroativos. A equipe é extremamente qualificada e o atendimento é humanizado.</p>
+                        </div>
+                        <div class="testimonial-image">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,6c1.93,0,3.5,1.57,3.5,3.5S13.93,13,12,13s-3.5-1.57-3.5-3.5S10.07,6,12,6z M12,20c-2.03,0-4.43-0.82-6.14-2.88C7.55,15.8,9.68,15,12,15s4.45,0.8,6.14,2.12C16.43,19.18,14.03,20,12,20z"/>
+                            </svg>
+                        </div>
+                        <p class="testimonial-author">Roberto Almeida</p>
+                        <p class="testimonial-role">Cliente de Advocacia Previdenciária</p>
+                    </div>
+                </div>
+                <div class="testimonial-arrows">
+                    <div class="arrow prev">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/>
+                        </svg>
+                    </div>
+                    <div class="arrow next">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <div class="testimonial-dot active" data-index="0"></div>
+                    <div class="testimonial-dot" data-index="1"></div>
+                    <div class="testimonial-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contato" class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Queremos caminhar com você</h2>
+                <p>Agende seu atendimento agora e descubra como podemos ajudar no seu caso específico.</p>
+                <a href="#contato" class="btn btn-cta">Agendar Atendimento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <div class="footer-logo-placeholder">Espaço para Logo</div>
+                <p>Excelência em advocacia previdenciária e mentoria acadêmica.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#advocacia">Advocacia</a></li>
+                    <li><a href="#mentoria">Mentoria</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#fundadora">Nossa Fundadora</a></li>
+                    <li><a href="#missao-valores">Missão e Valores</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Redes Sociais</h4>
+                <div class="social-icons">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+                        </svg>
+                    </div>
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                        </svg>
+                    </div>
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"/>
+                        </svg>
+                    </div>
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© Grupo Camilla Soares — Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Testimonial carousel - Improved for smoother transitions
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+        let isAnimating = false;
+
+        function showTestimonial(index) {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            // Remove active class from all testimonials and dots
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Add active class to current testimonial and dot
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Reset animation flag after transition completes
+            setTimeout(() => {
+                isAnimating = false;
+            }, 600);
+        }
+
+        function nextTestimonial() {
+            if (isAnimating) return;
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            if (isAnimating) return;
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+
+        // Add event listeners for testimonial navigation
+        document.querySelector('.arrow.next').addEventListener('click', nextTestimonial);
+        document.querySelector('.arrow.prev').addEventListener('click', prevTestimonial);
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentTestimonial = index;
+                showTestimonial(currentTestimonial);
+            });
+        });
+
+        // Auto-rotate testimonials
+        let testimonialInterval = setInterval(nextTestimonial, 6000);
+        
+        // Pause auto-rotation when hovering over testimonials
+        const testimonialContainer = document.querySelector('.testimonial-container');
+        testimonialContainer.addEventListener('mouseenter', () => {
+            clearInterval(testimonialInterval);
+        });
+        
+        testimonialContainer.addEventListener('mouseleave', () => {
+            testimonialInterval = setInterval(nextTestimonial, 6000);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.sobre-content, .card, .cta-content, .missao-box, .valores-box, .fundadora-content').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f3d80714055221',t:'MTc0OTg0MTM2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
