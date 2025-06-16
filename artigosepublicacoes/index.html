@@ -1,0 +1,958 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos e Publicações - Dra. Camilla Soares</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', Arial, sans-serif;
+            background-color: #020620;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #E4C09B;
+            margin-bottom: 1rem;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #E4C09B;
+        }
+
+        /* Seção de Artigos */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .article-card {
+            background-color: #F3E1C6;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            color: #020620;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            background-color: #E4C09B;
+            color: #020620;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Nunito', Arial, sans-serif;
+        }
+
+        .read-more:hover {
+            background-color: #d1ad88;
+            transform: scale(1.05);
+        }
+
+        /* Modal para artigo completo */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #F3E1C6;
+            color: #333;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #E4C09B;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #020620;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: #d1ad88;
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            color: #020620;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #E4C09B;
+        }
+
+        .modal-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .modal-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Botão Home */
+        .home-button-container {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .home-button {
+            background-color: #E4C09B;
+            color: #020620;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .home-button:hover {
+            background-color: #d1ad88;
+            transform: scale(1.05);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #020620;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(228, 192, 155, 0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-contact h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #E4C09B;
+        }
+
+        .social-icon:hover {
+            color: #E4C09B;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(228, 192, 155, 0.5);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card {
+                max-width: 100%;
+            }
+
+            .home-button {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Artigos e Publicações</h1>
+        </div>
+    </header>
+
+    <!-- Seção de Artigos -->
+    <main class="container">
+        <div class="articles-grid">
+            <!-- Artigo 1 -->
+            <article class="article-card" data-article-id="1">
+                <div class="article-content">
+                    <h2 class="article-title">Diferença entre Aposentadoria por Idade e Tempo</h2>
+                    <p class="article-excerpt">
+                        Entenda as principais diferenças entre os dois tipos de aposentadoria e descubra qual é a mais vantajosa para o seu caso específico.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+
+            <!-- Artigo 2 -->
+            <article class="article-card" data-article-id="2">
+                <div class="article-content">
+                    <h2 class="article-title">Como Calcular o Benefício Previdenciário</h2>
+                    <p class="article-excerpt">
+                        Aprenda o passo a passo para calcular corretamente o valor do seu benefício previdenciário e evite surpresas desagradáveis.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+
+            <!-- Artigo 3 -->
+            <article class="article-card" data-article-id="3">
+                <div class="article-content">
+                    <h2 class="article-title">Direitos do Trabalhador em Caso de Acidente</h2>
+                    <p class="article-excerpt">
+                        Conheça todos os direitos garantidos por lei aos trabalhadores que sofrem acidentes de trabalho e saiba como reivindicá-los.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+
+            <!-- Artigo 4 -->
+            <article class="article-card" data-article-id="4">
+                <div class="article-content">
+                    <h2 class="article-title">Reforma da Previdência: O Que Mudou?</h2>
+                    <p class="article-excerpt">
+                        Uma análise completa sobre as principais mudanças trazidas pela reforma da previdência e como elas afetam sua aposentadoria.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+
+            <!-- Artigo 5 -->
+            <article class="article-card" data-article-id="5">
+                <div class="article-content">
+                    <h2 class="article-title">Auxílio-Doença: Quem Tem Direito?</h2>
+                    <p class="article-excerpt">
+                        Descubra quais são os requisitos necessários para ter direito ao auxílio-doença e como dar entrada no benefício.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+
+            <!-- Artigo 6 -->
+            <article class="article-card" data-article-id="6">
+                <div class="article-content">
+                    <h2 class="article-title">Aposentadoria Especial: Profissões e Requisitos</h2>
+                    <p class="article-excerpt">
+                        Saiba quais profissões têm direito à aposentadoria especial e quais documentos são necessários para comprovar a atividade.
+                    </p>
+                    <button class="read-more">Leia mais</button>
+                </div>
+            </article>
+        </div>
+
+        <!-- Botão Home -->
+        <div class="home-button-container">
+    <a href="https://www.grupocamillasoares.com.br" class="home-button">Voltar para a Home</a>
+</div>
+    </main>
+
+    <!-- Modal para exibir artigo completo -->
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h3>Entre em contato</h3>
+                    <div class="contact-info">
+                        <p>📞 (11) 99999-9999</p>
+                        <p>✉️ contato@camillasoares.com.br</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="Instagram">📸</a>
+                    <a href="#" class="social-icon" aria-label="Facebook">👍</a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
+                </div>
+
+                <p class="copyright">Este site pertence ao Grupo Camilla Soares.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Banco de dados de artigos
+        const articles = {
+            1: {
+                title: "Diferença entre Aposentadoria por Idade e Tempo",
+                content: `
+                    <p>A aposentadoria é um direito fundamental de todo trabalhador brasileiro, mas muitas pessoas ainda têm dúvidas sobre as diferenças entre a aposentadoria por idade e por tempo de contribuição. Neste artigo, vamos esclarecer essas diferenças e ajudá-lo a entender qual modalidade pode ser mais vantajosa para o seu caso.</p>
+                    
+                    <p><strong>Aposentadoria por Idade</strong></p>
+                    
+                    <p>A aposentadoria por idade é destinada aos trabalhadores que atingem uma determinada idade estabelecida por lei. Atualmente, os requisitos são:</p>
+                    
+                    <p>- Para homens: 65 anos de idade e mínimo de 15 anos de contribuição<br>
+                    - Para mulheres: 62 anos de idade e mínimo de 15 anos de contribuição<br>
+                    - Para trabalhadores rurais: redução de 5 anos na idade mínima</p>
+                    
+                    <p>Esta modalidade é especialmente vantajosa para quem começou a contribuir para a previdência mais tarde ou teve períodos de interrupção nas contribuições ao longo da vida laboral.</p>
+                    
+                    <p><strong>Aposentadoria por Tempo de Contribuição</strong></p>
+                    
+                    <p>Com a Reforma da Previdência de 2019, a aposentadoria exclusivamente por tempo de contribuição foi extinta. Agora, além do tempo de contribuição, também é necessário atingir uma idade mínima:</p>
+                    
+                    <p>- Para homens: 35 anos de contribuição e idade mínima de 65 anos<br>
+                    - Para mulheres: 30 anos de contribuição e idade mínima de 62 anos</p>
+                    
+                    <p>No entanto, existem regras de transição para quem já estava no mercado de trabalho antes da reforma:</p>
+                    
+                    <p>1. <strong>Regra dos pontos</strong>: soma da idade com o tempo de contribuição<br>
+                    2. <strong>Idade mínima progressiva</strong>: aumento gradual da idade mínima<br>
+                    3. <strong>Pedágio de 50%</strong>: para quem estava próximo de se aposentar<br>
+                    4. <strong>Pedágio de 100%</strong>: cumprimento de tempo adicional igual ao que faltava para aposentar</p>
+                    
+                    <p><strong>Qual é mais vantajosa?</strong></p>
+                    
+                    <p>A escolha entre as modalidades depende da sua situação específica:</p>
+                    
+                    <p>- Se você começou a trabalhar muito jovem e contribuiu ininterruptamente, as regras de transição da aposentadoria por tempo de contribuição podem ser mais vantajosas.<br>
+                    - Se você tem idade avançada, mas poucos anos de contribuição, a aposentadoria por idade é o caminho mais adequado.<br>
+                    - O valor do benefício também varia conforme o tempo de contribuição e a média salarial, sendo geralmente maior para quem contribuiu por mais tempo.</p>
+                    
+                    <p>É fundamental fazer um planejamento previdenciário personalizado, analisando seu histórico contributivo e simulando as diferentes possibilidades para identificar qual modalidade resultará no melhor benefício para o seu caso.</p>
+                    
+                    <p>Para uma análise detalhada da sua situação previdenciária, entre em contato com nossa equipe especializada.</p>
+                `
+            },
+            2: {
+                title: "Como Calcular o Benefício Previdenciário",
+                content: `
+                    <p>Entender como é calculado o valor do seu benefício previdenciário é essencial para planejar sua aposentadoria de forma eficiente. Neste artigo, vamos explicar de maneira clara e objetiva como funciona esse cálculo após a Reforma da Previdência.</p>
+                    
+                    <p><strong>Entendendo a base de cálculo</strong></p>
+                    
+                    <p>O cálculo do benefício previdenciário é baseado na média de todos os salários de contribuição desde julho de 1994 (ou do início das contribuições, se posterior). Antes da reforma, consideravam-se os 80% maiores salários de contribuição, descartando os 20% menores. Agora, são considerados 100% dos salários de contribuição.</p>
+                    
+                    <p><strong>Fórmula de cálculo atual</strong></p>
+                    
+                    <p>Após a Reforma da Previdência, o valor do benefício segue a seguinte regra:</p>
+                    
+                    <p>1. Calcula-se a média de 100% dos salários de contribuição<br>
+                    2. O benefício inicial será de 60% dessa média, com acréscimo de 2% para cada ano que exceder:</p>
+                    
+                    <p>- 15 anos de contribuição para mulheres<br>
+                    - 20 anos de contribuição para homens</p>
+                    
+                    <p>Isso significa que para receber 100% da média:</p>
+                    
+                    <p>- Mulheres precisam contribuir por 35 anos (60% + 40% = 100%)<br>
+                    - Homens precisam contribuir por 40 anos (60% + 40% = 100%)</p>
+                    
+                    <p><strong>Exemplo prático</strong></p>
+                    
+                    <p>Vamos considerar um homem com média salarial de R$ 3.000,00 e 25 anos de contribuição:</p>
+                    
+                    <p>- Base: 60% de R$ 3.000,00 = R$ 1.800,00<br>
+                    - Acréscimo: 5 anos além dos 20 anos mínimos × 2% = 10%<br>
+                    - 10% de R$ 3.000,00 = R$ 300,00<br>
+                    - Benefício final: R$ 1.800,00 + R$ 300,00 = R$ 2.100,00 (70% da média)</p>
+                    
+                    <p><strong>Regras especiais</strong></p>
+                    
+                    <p>Existem regras específicas para alguns tipos de benefícios:</p>
+                    
+                    <p>1. <strong>Aposentadoria por incapacidade por acidente de trabalho</strong>: 100% da média salarial<br>
+                    2. <strong>Aposentadoria por incapacidade por doença comum</strong>: segue a regra geral (60% + 2% por ano adicional)<br>
+                    3. <strong>Pensão por morte</strong>: 50% + 10% por dependente, limitado a 100% do benefício que o segurado recebia ou teria direito</p>
+                    
+                    <p><strong>Teto do INSS</strong></p>
+                    
+                    <p>É importante lembrar que todos os benefícios estão limitados ao teto do INSS, que é reajustado anualmente. Em 2023, esse valor é de R$ 7.507,49.</p>
+                    
+                    <p><strong>Fatores que podem influenciar o cálculo</strong></p>
+                    
+                    <p>- Períodos sem contribuição<br>
+                    - Contribuições sobre valores muito discrepantes<br>
+                    - Atividades especiais que permitem conversão de tempo<br>
+                    - Regras de transição para quem já estava no sistema antes da reforma</p>
+                    
+                    <p>Para garantir que você receberá o melhor benefício possível, é recomendável fazer um planejamento previdenciário com antecedência, analisando seu histórico contributivo e identificando possíveis estratégias para otimizar o valor da sua aposentadoria.</p>
+                    
+                    <p>Nossa equipe especializada está à disposição para auxiliá-lo nesse planejamento, garantindo que você tome as melhores decisões para sua aposentadoria.</p>
+                `
+            },
+            3: {
+                title: "Direitos do Trabalhador em Caso de Acidente",
+                content: `
+                    <p>Os acidentes de trabalho são eventos indesejados que podem ocorrer no ambiente laboral ou durante o trajeto casa-trabalho. Quando isso acontece, é fundamental que o trabalhador conheça seus direitos para garantir a devida proteção legal e previdenciária. Neste artigo, vamos detalhar os principais direitos assegurados aos trabalhadores acidentados.</p>
+                    
+                    <p><strong>O que é considerado acidente de trabalho?</strong></p>
+                    
+                    <p>De acordo com a legislação brasileira, acidente de trabalho é aquele que ocorre:</p>
+                    
+                    <p>- Durante o exercício da atividade profissional<br>
+                    - No trajeto entre a residência e o local de trabalho (acidente de percurso)<br>
+                    - Durante o intervalo para refeição ou descanso<br>
+                    - Em viagens a serviço da empresa</p>
+                    
+                    <p>Também são equiparadas a acidentes de trabalho as doenças ocupacionais, que se desenvolvem em decorrência das condições de trabalho.</p>
+                    
+                    <p><strong>Direitos imediatos após o acidente</strong></p>
+                    
+                    <p>1. <strong>Atendimento médico</strong>: O empregador deve garantir o primeiro atendimento e encaminhar o trabalhador ao serviço médico.</p>
+                    
+                    <p>2. <strong>Emissão da CAT</strong>: A Comunicação de Acidente de Trabalho deve ser emitida pela empresa em até 24 horas após o acidente. Caso a empresa não o faça, o próprio trabalhador, seus dependentes, o sindicato, o médico ou qualquer autoridade pública pode emitir a CAT.</p>
+                    
+                    <p>3. <strong>Estabilidade provisória</strong>: Após retornar de afastamento superior a 15 dias, o trabalhador tem garantia de emprego por 12 meses.</p>
+                    
+                    <p><strong>Benefícios previdenciários</strong></p>
+                    
+                    <p>1. <strong>Auxílio-doença acidentário</strong>: Pago a partir do 16º dia de afastamento (os primeiros 15 dias são pagos pela empresa). O valor corresponde a 91% do salário de benefício.</p>
+                    
+                    <p>2. <strong>Auxílio-acidente</strong>: Concedido quando o acidente resulta em sequelas que reduzem a capacidade para o trabalho. É um benefício pago mensalmente, correspondente a 50% do salário de benefício, até a aposentadoria.</p>
+                    
+                    <p>3. <strong>Aposentadoria por invalidez acidentária</strong>: Quando o acidente resulta em incapacidade total e permanente para qualquer trabalho. O valor corresponde a 100% da média dos salários de contribuição.</p>
+                    
+                    <p>4. <strong>Pensão por morte acidentária</strong>: Destinada aos dependentes do trabalhador que falece em decorrência de acidente de trabalho.</p>
+                    
+                    <p><strong>Direitos trabalhistas</strong></p>
+                    
+                    <p>1. <strong>Continuidade dos depósitos do FGTS</strong>: Durante o período de afastamento por acidente de trabalho, a empresa deve continuar depositando o FGTS.</p>
+                    
+                    <p>2. <strong>Contagem de tempo para férias</strong>: Os primeiros 6 meses de afastamento são considerados para cálculo de férias.</p>
+                    
+                    <p>3. <strong>Manutenção de plano de saúde</strong>: A empresa deve manter o plano de saúde do trabalhador durante o afastamento.</p>
+                    
+                    <p><strong>Direitos civis</strong></p>
+                    
+                    <p>Além dos direitos previdenciários e trabalhistas, o trabalhador pode ter direito a indenizações na esfera civil:</p>
+                    
+                    <p>1. <strong>Danos materiais</strong>: Despesas médicas, medicamentos, tratamentos não cobertos pelo plano de saúde, etc.</p>
+                    
+                    <p>2. <strong>Danos morais</strong>: Sofrimento psicológico, dor, constrangimento.</p>
+                    
+                    <p>3. <strong>Danos estéticos</strong>: Deformidades físicas visíveis causadas pelo acidente.</p>
+                    
+                    <p>4. <strong>Pensão vitalícia</strong>: Quando há redução da capacidade laboral, pode ser devida uma pensão complementar ao auxílio-acidente.</p>
+                    
+                    <p><strong>Como proceder após um acidente de trabalho</strong></p>
+                    
+                    <p>1. Busque atendimento médico imediatamente<br>
+                    2. Certifique-se de que a CAT foi emitida<br>
+                    3. Guarde todos os documentos médicos e comprovantes de despesas<br>
+                    4. Procure orientação jurídica especializada</p>
+                    
+                    <p>É fundamental contar com o apoio de profissionais especializados para garantir que todos os seus direitos sejam respeitados. Nossa equipe está à disposição para orientá-lo e representá-lo na busca pelos seus direitos após um acidente de trabalho.</p>
+                `
+            },
+            4: {
+                title: "Reforma da Previdência: O Que Mudou?",
+                content: `
+                    <p>A Reforma da Previdência, aprovada em novembro de 2019 através da Emenda Constitucional nº 103, trouxe mudanças significativas para o sistema previdenciário brasileiro. Neste artigo, vamos analisar as principais alterações e como elas afetam os trabalhadores brasileiros.</p>
+                    
+                    <p><strong>Idade mínima</strong></p>
+                    
+                    <p>Uma das mudanças mais impactantes foi a instituição de idade mínima para todas as categorias:</p>
+                    
+                    <p>- Homens: 65 anos<br>
+                    - Mulheres: 62 anos<br>
+                    - Professores: 60 anos (homens) e 57 anos (mulheres)<br>
+                    - Policiais e agentes penitenciários: 55 anos<br>
+                    - Trabalhadores rurais: 60 anos (homens) e 55 anos (mulheres)</p>
+                    
+                    <p>Antes da reforma, era possível se aposentar apenas por tempo de contribuição, sem exigência de idade mínima.</p>
+                    
+                    <p><strong>Tempo de contribuição</strong></p>
+                    
+                    <p>O tempo mínimo de contribuição também sofreu alterações:</p>
+                    
+                    <p>- Homens: 20 anos (para aposentadoria integral)<br>
+                    - Mulheres: 15 anos (para aposentadoria integral)<br>
+                    - Servidores públicos: 25 anos para ambos os sexos</p>
+                    
+                    <p><strong>Cálculo do benefício</strong></p>
+                    
+                    <p>O cálculo do valor da aposentadoria também mudou significativamente:</p>
+                    
+                    <p>- Antes: média dos 80% maiores salários desde julho/1994<br>
+                    - Depois: média de todos os salários desde julho/1994</p>
+                    
+                    <p>Além disso, o valor inicial do benefício passou a ser:</p>
+                    
+                    <p>- 60% da média salarial + 2% por ano que exceder o tempo mínimo de contribuição</p>
+                    
+                    <p>Isso significa que para receber 100% da média, são necessários:</p>
+                    
+                    <p>- Homens: 40 anos de contribuição<br>
+                    - Mulheres: 35 anos de contribuição</p>
+                    
+                    <p><strong>Regras de transição</strong></p>
+                    
+                    <p>Para quem já estava no mercado de trabalho antes da reforma, foram estabelecidas regras de transição:</p>
+                    
+                    <p>1. <strong>Sistema de pontos</strong>: soma da idade com o tempo de contribuição, com progressão anual até atingir 105 pontos (homens) e 100 pontos (mulheres).</p>
+                    
+                    <p>2. <strong>Idade mínima progressiva</strong>: aumento gradual da idade mínima até atingir 65 anos (homens) e 62 anos (mulheres).</p>
+                    
+                    <p>3. <strong>Pedágio de 50%</strong>: para quem estava a até 2 anos de se aposentar, cumprimento de 50% do tempo que faltava.</p>
+                    
+                    <p>4. <strong>Pedágio de 100%</strong>: cumprimento do tempo que faltava para aposentar + 100% desse tempo, com idade mínima de 60 anos (homens) e 57 anos (mulheres).</p>
+                    
+                    <p>5. <strong>Idade mínima reduzida</strong>: para professores, policiais e trabalhadores em condições especiais.</p>
+                    
+                    <p><strong>Pensão por morte</strong></p>
+                    
+                    <p>As regras para pensão por morte também foram alteradas:</p>
+                    
+                    <p>- Valor: 50% + 10% por dependente (antes era 100%)<br>
+                    - Acumulação: restrições para acumular pensão com aposentadoria<br>
+                    - Duração: variável conforme a idade do cônjuge</p>
+                    
+                    <p><strong>Contribuição previdenciária</strong></p>
+                    
+                    <p>As alíquotas de contribuição passaram a ser progressivas:</p>
+                    
+                    <p>- Até 1 salário mínimo: 7,5%<br>
+                    - De 1 a 2 salários mínimos: 9%<br>
+                    - De 2 a 3 salários mínimos: 12%<br>
+                    - De 3 a 4 salários mínimos: 14%<br>
+                    - Acima de 4 salários mínimos: 14,5% até o teto</p>
+                    
+                    <p>Para servidores públicos, as alíquotas podem chegar a 22% para os maiores salários.</p>
+                    
+                    <p><strong>Aposentadoria especial</strong></p>
+                    
+                    <p>As regras para aposentadoria especial (atividades insalubres, perigosas) também mudaram:</p>
+                    
+                    <p>- Inclusão de idade mínima: 55, 58 ou 60 anos, conforme o grau de risco<br>
+                    - Tempo mínimo de exposição: 15, 20 ou 25 anos, conforme o grau de risco<br>
+                    - Fim da conversão de tempo especial em comum para homens</p>
+                    
+                    <p><strong>Impactos da reforma</strong></p>
+                    
+                    <p>As mudanças trazidas pela reforma têm impactos significativos:</p>
+                    
+                    <p>- Aumento do tempo necessário para se aposentar<br>
+                    - Redução no valor dos benefícios para muitos trabalhadores<br>
+                    - Necessidade de maior planejamento previdenciário<br>
+                    - Estímulo à previdência complementar</p>
+                    
+                    <p>É fundamental que cada trabalhador analise sua situação específica e faça um planejamento adequado para garantir uma aposentadoria tranquila. Nossa equipe especializada está à disposição para auxiliá-lo nesse planejamento, considerando as novas regras e identificando as melhores estratégias para o seu caso.</p>
+                `
+            },
+            5: {
+                title: "Auxílio-Doença: Quem Tem Direito?",
+                content: `
+                    <p>O auxílio-doença, atualmente denominado "Benefício por Incapacidade Temporária", é um dos benefícios previdenciários mais solicitados no Brasil. Ele é concedido ao segurado que fica temporariamente incapacitado para o trabalho devido a uma doença ou acidente. Neste artigo, vamos explicar detalhadamente quem tem direito a esse benefício e como solicitá-lo.</p>
+                    
+                    <p><strong>Requisitos básicos</strong></p>
+                    
+                    <p>Para ter direito ao auxílio-doença, é necessário cumprir os seguintes requisitos:</p>
+                    
+                    <p>1. <strong>Qualidade de segurado</strong>: Estar filiado ao INSS como contribuinte (empregado, autônomo, facultativo, etc.).</p>
+                    
+                    <p>2. <strong>Carência</strong>: Ter contribuído por pelo menos 12 meses antes do início da incapacidade. Existem exceções para doenças graves e acidentes.</p>
+                    
+                    <p>3. <strong>Incapacidade temporária</strong>: Estar incapacitado para exercer suas atividades laborais por mais de 15 dias consecutivos.</p>
+                    
+                    <p>4. <strong>Perícia médica</strong>: Comprovar a incapacidade através de perícia médica realizada pelo INSS.</p>
+                    
+                    <p><strong>Exceções à carência</strong></p>
+                    
+                    <p>Em alguns casos, o período de carência de 12 meses não é exigido:</p>
+                    
+                    <p>1. <strong>Acidentes de qualquer natureza</strong> (trabalho, trânsito, doméstico, etc.)</p>
+                    
+                    <p>2. <strong>Doenças graves</strong> listadas em lei, como:</p>
+                    
+                    <p>- Tuberculose ativa<br>
+                    - Hanseníase<br>
+                    - Alienação mental<br>
+                    - Neoplasia maligna (câncer)<br>
+                    - Cegueira<br>
+                    - Paralisia irreversível e incapacitante<br>
+                    - Cardiopatia grave<br>
+                    - Doença de Parkinson<br>
+                    - Espondiloartrose anquilosante<br>
+                    - Nefropatia grave<br>
+                    - Estado avançado de Paget<br>
+                    - AIDS<br>
+                    - Contaminação por radiação<br>
+                    - Hepatopatia grave</p>
+                    
+                    <p><strong>Valor do benefício</strong></p>
+                    
+                    <p>O valor do auxílio-doença corresponde a 91% do salário de benefício, que é calculado com base na média dos salários de contribuição do segurado. O valor não pode ser inferior ao salário mínimo nem superior ao teto previdenciário.</p>
+                    
+                    <p><strong>Duração do benefício</strong></p>
+                    
+                    <p>O auxílio-doença é concedido enquanto persistir a incapacidade para o trabalho. Na perícia médica, o perito estabelece uma data estimada para recuperação, chamada de "Data de Cessação do Benefício" (DCB). Se o segurado não se recuperar até essa data, pode solicitar a prorrogação do benefício.</p>
+                    
+                    <p><strong>Diferença entre auxílio-doença comum e acidentário</strong></p>
+                    
+                    <p>Existem duas modalidades de auxílio-doença:</p>
+                    
+                    <p>1. <strong>Auxílio-doença previdenciário (B31)</strong>: Concedido quando a incapacidade não tem relação com o trabalho.</p>
+                    
+                    <p>2. <strong>Auxílio-doença acidentário (B91)</strong>: Concedido quando a incapacidade decorre de acidente de trabalho ou doença ocupacional.</p>
+                    
+                    <p>A principal diferença entre eles é que o auxílio-doença acidentário garante estabilidade no emprego por 12 meses após o retorno ao trabalho e não exige carência.</p>
+                    
+                    <p><strong>Como solicitar o auxílio-doença</strong></p>
+                    
+                    <p>O processo para solicitar o benefício inclui:</p>
+                    
+                    <p>1. Acessar o aplicativo/site "Meu INSS" ou ligar para o telefone 135</p>
+                    
+                    <p>2. Selecionar a opção "Pedir Benefício por Incapacidade"</p>
+                    
+                    <p>3. Anexar documentos médicos que comprovem a incapacidade (atestados, exames, laudos)</p>
+                    
+                    <p>4. Agendar e comparecer à perícia médica</p>
+                    
+                    <p><strong>Documentos necessários</strong></p>
+                    
+                    <p>- Documento de identificação com foto<br>
+                    - CPF<br>
+                    - Atestados e laudos médicos<br>
+                    - Exames que comprovem a doença<br>
+                    - Carteira de trabalho ou carnês de contribuição (para autônomos)<br>
+                    - CAT (Comunicação de Acidente de Trabalho), em caso de acidente de trabalho</p>
+                    
+                    <p><strong>Motivos comuns de indeferimento</strong></p>
+                    
+                    <p>Os principais motivos para negativa do benefício são:</p>
+                    
+                    <p>- Falta de carência (menos de 12 contribuições)<br>
+                    - Perda da qualidade de segurado<br>
+                    - Não comprovação da incapacidade na perícia médica<br>
+                    - Documentação médica insuficiente ou inadequada</p>
+                    
+                    <p><strong>O que fazer em caso de negativa</strong></p>
+                    
+                    <p>Se o benefício for negado, o segurado pode:</p>
+                    
+                    <p>1. Entrar com pedido de reconsideração no prazo de 30 dias<br>
+                    2. Recorrer às instâncias administrativas do INSS<br>
+                    3. Buscar a via judicial, com auxílio de um advogado especializado</p>
+                    
+                    <p>Nossa equipe jurídica especializada está à disposição para auxiliá-lo em todas as etapas do processo, desde a solicitação inicial até eventuais recursos, garantindo que seus direitos sejam respeitados e que você receba o benefício a que tem direito.</p>
+                `
+            },
+            6: {
+                title: "Aposentadoria Especial: Profissões e Requisitos",
+                content: `
+                    <p>A aposentadoria especial é um benefício previdenciário concedido aos trabalhadores que exercem atividades em condições prejudiciais à saúde ou à integridade física. Este tipo de aposentadoria reconhece o desgaste adicional sofrido por esses profissionais e permite que se aposentem com requisitos diferenciados. Neste artigo, vamos explicar quais profissões têm direito a esse benefício e quais são os requisitos necessários.</p>
+                    
+                    <p><strong>O que é aposentadoria especial?</strong></p>
+                    
+                    <p>A aposentadoria especial é um benefício previdenciário destinado aos trabalhadores que exercem atividades profissionais sujeitas a condições especiais que prejudiquem a saúde ou a integridade física. Essas condições podem ser:</p>
+                    
+                    <p>- Exposição a agentes nocivos químicos<br>
+                    - Exposição a agentes nocivos físicos<br>
+                    - Exposição a agentes nocivos biológicos<br>
+                    - Associação de agentes prejudiciais</p>
+                    
+                    <p><strong>Requisitos após a Reforma da Previdência</strong></p>
+                    
+                    <p>Com a Reforma da Previdência (EC 103/2019), os requisitos para a aposentadoria especial foram alterados. Agora, além do tempo de exposição aos agentes nocivos, também é exigida uma idade mínima:</p>
+                    
+                    <p>1. <strong>Para atividades de alto risco</strong>:<br>
+                    - 15 anos de exposição<br>
+                    - Idade mínima de 55 anos</p>
+                    
+                    <p>2. <strong>Para atividades de risco médio</strong>:<br>
+                    - 20 anos de exposição<br>
+                    - Idade mínima de 58 anos</p>
+                    
+                    <p>3. <strong>Para atividades de risco leve</strong>:<br>
+                    - 25 anos de exposição<br>
+                    - Idade mínima de 60 anos</p>
+                    
+                    <p><strong>Profissões que podem ter direito à aposentadoria especial</strong></p>
+                    
+                    <p>É importante ressaltar que o direito à aposentadoria especial não é determinado pela profissão em si, mas pela efetiva exposição a agentes nocivos. No entanto, algumas profissões comumente se enquadram nos critérios:</p>
+                    
+                    <p>1. <strong>Exposição a agentes químicos</strong>:<br>
+                    - Trabalhadores de indústrias químicas<br>
+                    - Pintores industriais<br>
+                    - Trabalhadores de mineração<br>
+                    - Galvanizadores<br>
+                    - Trabalhadores com produtos petroquímicos</p>
+                    
+                    <p>2. <strong>Exposição a agentes físicos</strong>:<br>
+                    - Trabalhadores expostos a ruído excessivo<br>
+                    - Trabalhadores expostos a temperaturas extremas<br>
+                    - Trabalhadores expostos a radiações ionizantes<br>
+                    - Trabalhadores em condições hiperbáricas (mergulhadores)</p>
+                    
+                    <p>3. <strong>Exposição a agentes biológicos</strong>:<br>
+                    - Profissionais de saúde (médicos, enfermeiros, técnicos)<br>
+                    - Trabalhadores de laboratórios<br>
+                    - Trabalhadores de esgoto e lixo<br>
+                    - Veterinários e trabalhadores com animais infectados</p>
+                    
+                    <p>4. <strong>Outras atividades</strong>:<br>
+                    - Vigilantes armados<br>
+                    - Motoristas de caminhão de cargas perigosas<br>
+                    - Eletricistas de alta tensão<br>
+                    - Trabalhadores em altura</p>
+                    
+                    <p><strong>Documentos necessários para comprovar a atividade especial</strong></p>
+                    
+                    <p>A comprovação da exposição aos agentes nocivos é fundamental para a concessão da aposentadoria especial. Os principais documentos são:</p>
+                    
+                    <p>1. <strong>PPP (Perfil Profissiográfico Previdenciário)</strong>: Documento histórico-laboral do trabalhador que reúne informações sobre as atividades desenvolvidas e exposição a agentes nocivos.</p>
+                    
+                    <p>2. <strong>LTCAT (Laudo Técnico de Condições Ambientais do Trabalho)</strong>: Documento que registra os agentes nocivos presentes no ambiente de trabalho e suas concentrações.</p>
+                    
+                    <p>3. <strong>SB-40, DSS-8030 ou DIRBEN-8030</strong>: Formulários antigos que podem ser utilizados para períodos anteriores.</p>
+                    
+                    <p>4. <strong>Carteira de trabalho</strong>: Com anotações sobre a função exercida e condições de trabalho.</p>
+                    
+                    <p>5. <strong>Outros documentos</strong>: Laudos periciais, documentos da empresa, etc.</p>
+                    
+                    <p><strong>Regras de transição</strong></p>
+                    
+                    <p>Para quem já estava no mercado de trabalho antes da Reforma da Previdência, existem regras de transição:</p>
+                    
+                    <p>1. <strong>Sistema de pontos</strong>: Soma da idade com o tempo de contribuição, conforme o grau de risco:<br>
+                    - Alto risco: 66 pontos<br>
+                    - Médio risco: 76 pontos<br>
+                    - Baixo risco: 86 pontos</p>
+                    
+                    <p>2. <strong>Conversão de tempo especial em comum</strong>: Para períodos anteriores à reforma, é possível converter o tempo especial em comum, com os seguintes multiplicadores:<br>
+                    - Alto risco (15 anos): 2,33<br>
+                    - Médio risco (20 anos): 1,75<br>
+                    - Baixo risco (25 anos): 1,40</p>
+                    
+                    <p><strong>Valor do benefício</strong></p>
+                    
+                    <p>O valor da aposentadoria especial corresponde a:</p>
+                    
+                    <p>- 60% da média de todos os salários de contribuição desde julho/1994<br>
+                    - Acréscimo de 2% para cada ano que exceder 15/20/25 anos de contribuição, conforme o caso</p>
+                    
+                    <p><strong>Desafios na obtenção da aposentadoria especial</strong></p>
+                    
+                    <p>Obter a aposentadoria especial pode ser um processo complexo devido a:</p>
+                    
+                    <p>- Rigor na análise dos documentos pelo INSS<br>
+                    - Dificuldade em obter documentos de empresas antigas ou fechadas<br>
+                    - Mudanças frequentes na legislação e jurisprudência<br>
+                    - Resistência das empresas em fornecer o PPP adequado</p>
+                    
+                    <p>Por isso, é fundamental contar com orientação especializada para garantir que todos os documentos estejam corretos e que seus direitos sejam respeitados. Nossa equipe jurídica está à disposição para auxiliá-lo em todo o processo de obtenção da aposentadoria especial, desde a análise inicial do seu caso até a eventual necessidade de recursos administrativos ou judiciais.</p>
+                `
+            }
+        };
+
+        // Funcionalidade para abrir o modal com o artigo completo
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', function() {
+                const articleId = this.closest('.article-card').dataset.articleId;
+                const article = articles[articleId];
+                
+                document.getElementById('modalTitle').textContent = article.title;
+                document.getElementById('modalBody').innerHTML = article.content;
+                document.getElementById('articleModal').classList.add('active');
+                
+                // Impedir rolagem da página quando o modal está aberto
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Fechar o modal
+        document.querySelector('.modal-close').addEventListener('click', function() {
+            document.getElementById('articleModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar o modal ao clicar fora dele
+        document.getElementById('articleModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Funcionalidade do botão "Voltar para a Home"
+        document.getElementById('homeButton').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95048975678c940e',t:'MTc1MDAxNjQwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
