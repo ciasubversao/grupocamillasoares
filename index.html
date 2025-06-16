@@ -862,9 +862,9 @@
 
         /* Footer */
         footer {
-            background-color: #081428;
+            background-color: #0d035a;
             padding: 60px 0 30px;
-            border-top: 1px solid rgba(218, 165, 32, 0.1);
+            border-top: 1px solid rgba(3, 11, 102, 0.775);
         }
 
         .footer-container {
@@ -1116,6 +1116,48 @@
     font-size: 18px;
     line-height: 1.6;
 }
+footer {
+    background-color: #0A0E17;
+    padding: 30px 0;
+    color: white;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Alinha no centro por padrão */
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Bloco central */
+.footer-info-center {
+    text-align: center;
+}
+
+/* Bloco esquerdo */
+.footer-info-left {
+    text-align: left;
+    display: none; /* Oculto por padrão */
+}
+
+/* Ativar quando quiser */
+.footer-info-left.active {
+    display: block;
+}
+
+/* Responsivo opcional */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-info-left {
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -1145,6 +1187,7 @@
             </div>
         </nav>
     </div>
+    
 </header>
 
     <!-- Hero Section -->
@@ -1393,13 +1436,23 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="container footer-container">
-            <div class="footer-logo">
-                <img src="https://i.ibb.co/rf4sLscn/logo-camillamenor.png" alt="Logo Grupo Camilla Soares">
-                <p>Excelência em advocacia previdenciária e mentoria acadêmica.</p>
-            </div>
+    <div class="footer-container">
+
+        <!-- Bloco central (visível por padrão) -->
+        <div class="footer-info-center">
+            <img src="https://i.ibb.co/rf4sLscn/logo-camillamenor.png" alt="Logo Grupo Camilla Soares">
+            <p>Excelência em advocacia previdenciária e mentoria acadêmica.</p>
+        </div>
+
+        <!-- Bloco esquerdo (oculto até ativar redes sociais) 
+        <div class="footer-info-left">
+            <img src="https://i.ibb.co/rf4sLscn/logo-camillamenor.png" alt="Logo Grupo Camilla Soares">
+            <p>Excelência em advocacia previdenciária e mentoria acadêmica.</p>
+        </div>-->
+
+    </div>
+</footer>
             <!-- redes sociais 
            <div class="footer-social">  
                 <h4>Redes Sociais</h4>
@@ -1566,6 +1619,17 @@
         document.querySelectorAll('.sobre-content, .card, .cta-content, .missao-box, .valores-box, .fundadora-content').forEach(el => {
             observer.observe(el);
         });
+        const socialButtons = document.querySelectorAll('.social-icon');
+const footerLeft = document.querySelector('.footer-info-left');
+const footerCenter = document.querySelector('.footer-info-center');
+
+if (socialButtons.length > 0) {
+    footerLeft.classList.add('active');
+    footerCenter.style.display = 'none';
+} else {
+    footerLeft.classList.remove('active');
+    footerCenter.style.display = 'block';
+}
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f3d80714055221',t:'MTc0OTg0MTM2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

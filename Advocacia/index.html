@@ -796,7 +796,7 @@
             .about-image {
                 width: 100%;
                 max-width: 400px;
-                margin: 0 auto 40px;
+                margin: 0 auto 50px;
             }
 
             .contact-container {
@@ -888,22 +888,55 @@
     object-fit: cover;
     display: block;
 }
+.logo img {
+    height: 100px;
+    width: auto;
+}
+footer .footer-logo-space img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.nav-menu a {
+    font-size: 12px;
+    font-weight: 500;
+}
+.nav-menu a:hover {
+    color: var(--bege-principal);
+    padding-left: 5px;
+}
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+
+
+
+
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">Camilla Soares</a>
-            <nav>
+<header id="header">
+    <div class="container header-container">
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/TD8m9hCv/logo-solo.png" alt="Logo" style="height: 40px;">
+            Camilla Soares Advocacia
+        </a>
+        <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="https://www.grupocamillasoares.com.br">Início</a></li>
-                    <li><a href="#sobre">Sobre Camilla</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#parceiros">Parceiros</a></li>
-                    <li><a href="#cursos">Cursos</a></li>
-                    <li><a href="https://www.grupocamillasoares.com.br/advocacia/artigosepublicacoes/">Artigos</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="https://www.grupocamillasoares.com.br">HOME</a></li>
+                    <li><a href="#sobre">SOBRE CAMILLA</a></li>
+                    <li><a href="#servicos">SERVIÇOS</a></li>
+                    <li><a href="#certificacoes">CERTIFICAÇÕES</a></li>
+                    <li><a href="#parceiros">PARCEIROS</a></li>
+                    <li><a href="#cursos">CURSOS</a></li>
+                    <li><a href="https://www.grupocamillasoares.com.br/advocacia/artigosepublicacoes/">ARTIGOS</a></li>
+                    <li><a href="#contato">CONTATO</a></li>
                 </ul>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -924,29 +957,27 @@
     </section>
 
     <!-- About Section -->
-    <section class="about" id="sobre">
-        <div class="container">
-            <div class="section-title">
-                <h2>Sobre Camilla</h2>
+   <section class="about" id="sobre">
+    <div class="container">
+        <div class="section-title">
+            <h2>Sobre Camilla</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image fade-in">
+                <div class="about-image-frame">
+                    <img src="https://i.ibb.co/hxPDhLX0/perfil-600-x-800-px.png" alt="Camilla Soares">
+                </div>
             </div>
-            <div class="about-content">
-                <div class="about-image fade-in">
-                    <div class="about-image-frame">
-                        <div class="about-image-inner">
-                            <p>Camilla Soares<br>Advogada</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-text fade-in">
-                    <h3>Trajetória e Compromisso</h3>
-                    <p>Advogada especialista em Direito Previdenciário, com formação pela Universidade Federal e pós-graduação em Direito Previdenciário Aplicado. Atuo há mais de 8 anos defendendo os direitos dos segurados do INSS com ética e dedicação.</p>
-                    <p>Minha missão é oferecer um atendimento humanizado, compreendendo as necessidades individuais de cada cliente e buscando as melhores estratégias jurídicas para garantir seus direitos.</p>
-                    <p>Além da advocacia, compartilho conhecimento através de cursos e materiais jurídicos para profissionais e estudantes da área.</p>
-                    <a href="#contato" class="btn">Entre em contato</a>
-                </div>
+            <div class="about-text fade-in">
+                <h3>Trajetória e Compromisso</h3>
+                <p>Advogada especialista em Direito Previdenciário, formada pelas Faculdades Metropolitanas Unidas (FMU) e pós-graduanda em Direito e Processo Previdenciário.</p>
+                <p>Atuo com ética, clareza e dedicação, sempre oferecendo um atendimento humanizado e estratégico para garantir os direitos dos meus clientes.</p>
+                <p>Além da advocacia, compartilho conhecimento por meio de mentorias, cursos e capacitações na área previdenciária.</p>
+                <a href="https://wa.me/5511915507610" class="btn">Entre em contato</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Services Section -->
     <section class="services" id="servicos">
@@ -1012,46 +1043,158 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section class="certifications" id="formacao">
-        <div class="container">
-            <div class="section-title">
-                <h2>Diplomas e Cursos</h2>
+  <!-- Formação Acadêmica -->
+<section class="certifications" id="formacao">
+    <div class="container">
+        <div class="section-title">
+            <h2>Formação Acadêmica</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Bacharelado em Direito</h3>
+                    <p>Faculdades Metropolitanas Unidas (FMU) — 2018 a 2023</p>
+                </div>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Bacharelado em Direito</h3>
-                        <p>Universidade Federal - 2012</p>
-                    </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Pós-graduação em Direito e Processo Previdenciário</h3>
+                    <p>GRAN Tecnologia e Educação — 2023 a 2025</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Pós-graduação em Direito Previdenciário</h3>
-                        <p>Instituto de Estudos Previdenciários - 2014</p>
-                    </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Cursos de Aperfeiçoamento -->
+<section class="certifications" id="cursos">
+    <div class="container">
+        <div class="section-title">
+            <h2>Cursos e Aperfeiçoamento</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Psicologia Investigativa e Criminal Profiling</h3>
+                    <p>Integra Extensão Profissional — 2018 (8h)</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Especialização em Processo Civil</h3>
-                        <p>Escola Superior de Advocacia - 2016</p>
-                    </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Negociação e Formação do Contrato</h3>
+                    <p>Faculdade Getúlio Vargas (FGV) — 2023 (5h)</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Certificação em Cálculos Previdenciários</h3>
-                        <p>Instituto Nacional de Estudos Jurídicos - 2018</p>
-                    </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Relações de Consumo e Direitos do Consumidor</h3>
+                    <p>Faculdade Getúlio Vargas (FGV) — 2023 (5h)</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Mestrado em Direito Previdenciário</h3>
-                        <p>Universidade de Estudos Avançados - 2020</p>
-                    </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Nova Advocacia Previdenciária: Como Iniciar do Zero</h3>
+                    <p>Instituto Brasileiro de Direito — 2023 (16h)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Redação e Negociação Contratual</h3>
+                    <p>ESA OAB — 2025 (8h)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Iniciação à Advocacia no RPPS</h3>
+                    <p>ESA OAB — 2025 (10h)</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Experiência Profissional -->
+<section class="certifications" id="experiencia">
+    <div class="container">
+        <div class="section-title">
+            <h2>Experiência Profissional</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Advogada Previdenciarista</h3>
+                    <p>Camilla Soares Advocacia — 2023 - Atual</p>
+                    <p>Atuação com planejamento previdenciário, BPC LOAS, aposentadorias, pensão por morte, auxílio-doença e benefícios acidentários.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Consultora Jurídica Autônoma</h3>
+                    <p>2023 - 2024</p>
+                    <p>Orientação jurídica especializada nas áreas de Direito Previdenciário e Direito do Consumidor, elaboração de pareceres, contratos e suporte jurídico integral.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Estagiária Jurídica</h3>
+                    <p>Procuradoria Geral do Município de São Paulo — 2022 - 2023</p>
+                    <p>Atuação em contencioso cível e administrativo, elaboração de peças processuais, acompanhamento de processos e diligências externas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Tutora Acadêmica</h3>
+                    <p>2019 - Atual</p>
+                    <p>Ministração de aulas particulares nas disciplinas de Direito Civil, Penal, Previdenciário, Família, Trabalhista, Constitucional, Processual Civil, Mediação e Conciliação.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="certifications" id="idiomas">
+    <div class="container">
+        <div class="section-title">
+            <h2>Idiomas</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Inglês</h3>
+                    <p>Avançado</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Espanhol</h3>
+                    <p>Básico</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Francês</h3>
+                    <p>Básico</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Partners Section -->
     <section class="partners" id="parceiros">
@@ -1162,25 +1305,33 @@
                     <p>Atendemos em todo o Brasil de forma online e presencialmente em nossa sede.</p>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Assunto</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Resumo do caso</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar mensagem</button>
-                    </form>
+                 <form action="https://formsubmit.co/c.soaresadvocacia@outlook.com" method="POST">
+    <!-- Campos ocultos -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://www.seusite.com/obrigado.html">
+
+    <div class="form-group">
+        <label for="name">Nome completo</label>
+        <input type="text" id="name" name="Nome" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="Email" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Assunto</label>
+        <input type="text" id="subject" name="Assunto" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Resumo do caso</label>
+        <textarea id="message" name="Mensagem" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn">Enviar mensagem</button>
+</form>
                 </div>
             </div>
         </div>
@@ -1219,14 +1370,14 @@
                 <div class="footer-column">
                     <h3>Camilla Soares</h3>
                     <div class="footer-logo-space">
-                        Espaço para Logo
+                        <img src="https://i.ibb.co/TD8m9hCv/logo-solo.png" alt="Logo Camilla Soares">
                     </div>
                     <p>Advocacia especializada em Direito Previdenciário com atendimento humanizado e personalizado.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul class="footer-links">
-                        <li>contato@camillasoares.adv.br</li>
+                        <li>c.soaresadvocacia@outlook.com</li>
                         <li>(11) 91550-7610</li>
                        <!-- <li>Av. Paulista, 1000 - São Paulo/SP</li> -->
                     </ul>
