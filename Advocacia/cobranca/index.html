@@ -391,9 +391,35 @@
     background-color: white;
     color: var(--azul-principal); /* Cor do fundo ao passar o mouse */
 }
+/* Botão Home Flutuante */
+.home-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--blue-medium);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+    background-color: var(--blue-dark);
+    transform: translateY(-3px);
+}
     </style>
 </head>
 <body>
+    <a href="https://www.grupocamillasoares.com.br" class="home-btn" title="Voltar para Home">
+    <i class="fas fa-home"></i>
+</a>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
