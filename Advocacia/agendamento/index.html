@@ -748,7 +748,7 @@
             <div class="container">
                 <section class="hero">
                     <h1 class="hero-title">Consultoria Jurídica Especializada</h1>
-                    <p class="hero-subtitle">Agende uma consulta com nossos advogados especializados e receba orientação jurídica personalizada para suas necessidades.</p>
+                    <p class="hero-subtitle">Agende uma consulta com a Dra. Camilla, advogada especializada, e receba orientação jurídica personalizada para suas necessidades.</p>
                     <a href="#" class="btn" id="schedule-btn">Agendar Consulta</a>
                 </section>
 
@@ -949,7 +949,7 @@
 
     <script>
         // Global variables
-        const SHEET_API_URL = 'https://sheetdb.io/api/v1/vramvdwy100a2'; // Replace with your SheetDB API key
+        const SHEET_API_URL = 'https://sheetdb.io/api/v1/12uese7kkvokw?sheet=agendamentos'; // Replace with your SheetDB API key
         const ADMIN_USERNAME = 'Admin';
         const ADMIN_PASSWORD = '12345678';
         let availableDates = [];
@@ -1517,6 +1517,17 @@
 
         // Load available dates
         function loadAvailableDates() {
+   async function loadAvailableDates() {
+    try {
+        const res = await fetch(SHEET_API_URL);
+        const data = await res.json();
+        availableDates = data;
+        renderAvailableDates();
+        generateCalendar();
+    } catch (error) {
+        alert('Erro ao carregar as datas. Verifique sua API!');
+    }
+}
             // In a real application, you would fetch from your API
             // For this example, we'll use some sample data
             availableDates = [
@@ -1780,6 +1791,7 @@
                 }, 1000);
             });
         }
+        
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'952ade6724ba9411',t:'MTc1MDQxODM0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
