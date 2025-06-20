@@ -1481,6 +1481,22 @@ footer .footer-logo-space img {
             // Reset form
             contactForm.reset();
         });
+        const SHEET_API_URL = 'https://sheetdb.io/api/v1/vramvdwyl00a2';
+
+// Função para enviar os dados para o Google Sheets
+async function sendToSheet(data) {
+    try {
+        const response = await fetch(SHEET_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        });
+        const result = await response.json();
+        console.log('Enviado para Google Sheets:', result);
+    } catch (error) {
+        console.error('Erro ao enviar para o Google Sheets:', error);
+    }
+}
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f3f577333f9411',t:'MTc0OTg0MjU2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
