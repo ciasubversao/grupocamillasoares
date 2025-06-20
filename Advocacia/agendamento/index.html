@@ -1015,6 +1015,56 @@
         const modalConfirm = document.getElementById('modal-confirm');
         const modalCancel = document.getElementById('modal-cancel');
 
+        async function saveDateToSheet(date, times) {
+    const data = {
+        data: [
+            {
+                date: date,
+                times: times.join(", ")
+            }
+        ]
+    };
+
+    const response = await fetch('https://sheetdb.io/api/v1/12uese7kkvokw?sheet=Datas', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Erro ao salvar a data');
+    }
+}
+
+async function saveAppointmentToSheet(name, email, phone, subject, date, time) {
+    const data = {
+        data: [
+            {
+                name: name,
+                email: email,
+                phone: phone,
+                subject: subject,
+                date: date,
+                time: time
+            }
+        ]
+    };
+
+    const response = await fetch('https://sheetdb.io/api/v1/12uese7kkvokw?sheet=Agendamentos', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Erro ao salvar o agendamento');
+    }
+}
+
         // Initialize the application
         document.addEventListener('DOMContentLoaded', () => {
             // Set minimum date to today
@@ -1344,31 +1394,20 @@
                 time: selectedTime
             };
             
-            // Simulate API delay
-            setTimeout(() => {
-                // In a real application, you would send the data to your API
-                console.log('Appointment data:', appointmentData);
-                
-                // Add appointment to the list
-                appointments.push({
-                    id: Date.now(),
-                    ...appointmentData
-                });
-                
-                // Show success section
-                successSection.classList.add('active');
-                
-                // Hide form section
-                formSection.classList.remove('active');
-                
-                // Scroll to success section
-                successSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Hide loading state
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-            }, 1500);
-        }
+           try {
+    await saveAppointmentToSheet(name, email, phone, subject, selectedDate, selectedTime);
+
+    successSection.classList.add('active');
+    formSection.classList.remove('active');
+    successSection.scrollIntoView({ behavior: 'smooth' });
+
+} catch (error) {
+    alert('Erro ao salvar agendamento. Tente novamente.');
+    console.error(error);
+} finally {
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+}
 
         // Reset appointment form
         function resetAppointmentForm() {
@@ -1471,19 +1510,16 @@
             addDateBtn.disabled = true;
             
             try {
-                // In a real application, you would send the data to your API
-                // For this example, we'll simulate an API call
-                await simulateApiCall({
-                    date,
-                    times: selectedTimes
-                });
-                
-                // Add the date to the available dates
-                availableDates.push({
-                    date,
-                    times: [...selectedTimes]
-                });
-                
+               await saveDateToSheet(date, selectedTimes);
+             
+               });
+
+               // Add the date to the available dates
+               availableDates.push({
+                   date,
+                   times: [...selectedTimes]
+               });
+
                 // Show success message
                 dateSuccess.classList.add('active');
                 setTimeout(() => {
